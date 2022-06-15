@@ -1,13 +1,12 @@
-from transformers import BertTokenizer, BertModel
+from transformers import BertModel, BertConfig
 
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertModel.from_pretrained("bert-base-uncased")
+# Initializing a BERT bert-base-uncased style configuration
+configuration = BertConfig()
 
-with open("Data.txt", "r") as f:
-    text = f.readlines()
+# Initializing a model from the bert-base-uncased style configuration
+model = BertModel(configuration)
 
-encoded_input = tokenizer(text, return_tensors='pt', padding=True, truncation=True)
+# Accessing the model configuration
+configuration = model.config
 
-output = model(**encoded_input)
-
-print(output)
+model
