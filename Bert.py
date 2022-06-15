@@ -9,4 +9,4 @@ model = BertModel(configuration)
 # Accessing the model configuration
 configuration = model.config
 
-model.
+model
