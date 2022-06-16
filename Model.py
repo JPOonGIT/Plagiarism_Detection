@@ -100,6 +100,7 @@ class Net(nn.Module):
                                                                                    loss_x4.data.item()))
 
 
+
   def test_model(self,dataframe, loss_function):
         log_interval = 1
         for index, data in enumerate(dataframe):
