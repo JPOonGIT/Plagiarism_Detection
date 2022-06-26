@@ -9,8 +9,6 @@ with open("Data.txt", "r") as f:
 encoded_input = tokenizer(text, return_tensors='pt', padding=True, truncation=True)
 
 output = model(**encoded_input)
-print('Output1:',output)
+print('Output1:', output)
 output = output[:, 0, :].view(-1, 768)
-print('Output2:',output)
-
-
+print('Output2:', output)
