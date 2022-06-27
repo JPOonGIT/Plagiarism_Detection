@@ -52,7 +52,7 @@ def import_pan21(base_path):
 
         return train_features, train_labels, test_features, test_labels
 
-'''
+
 def import_verification(base_path):
     import os
     import json
@@ -97,4 +97,3 @@ def import_verification(base_path):
                 f = open(file_path)
                 text = json.load(f)
                 train_labels.append(text)
-'''
