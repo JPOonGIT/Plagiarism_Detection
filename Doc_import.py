@@ -69,31 +69,41 @@ def import_verification(base_path):
         data_path = os.listdir(path)
 
         if dic == test_train[0]:
-            for i, file_name in enumerate(data_path[0:int(len(data_path) / 2)]):
-                file_path = path + "/" + file_name
-                with open(file_path, 'r', encoding='utf8') as f:
-                    data = json.load(f)
-                    if data == "pairs":
-                        text =
-                        train_features.append(text)
-
-                for i, file_name in enumerate(data_path[int(len(data_path) / 2):int(len(data_path))]):
-                    file_path = path + "/" + file_name
-                    f = open(file_path)
-                    data = json.load(f)
-                        if data ==
-                            train_labels.append(text)
+            with open(data_path, 'r', encoding='utf8') as f:
+                data = json.load(f)
+                for item in data:
+                    my_dic = {}
+                    # my_dic['id'] = item.get('id')
+                    # my_dic['title'] = item.get('fandoms')
+                    my_dic['text'] = item.get('pair')
+                    train_features.append(my_dic)
 
         if dic == test_train[1]:
-            for i, file_name in enumerate(data_path[0:int(len(data_path) / 2)]):
-                file_path = path + "/" + file_name
-                with open(file_path, 'r', encoding='utf8') as f:
-                    data = json.load(f)
-                    if data == "fandoms":
-                        test_features.append(text)
+             with open(data_path, 'r', encoding='utf8') as f:
+                data = json.load(f)
+                for item in data:
+                    my_dic = {}
+                    # my_dic['id'] = item.get('id')
+                    my_dic['truth'] = item.get('same').get('authors')
+                    train_labels.append(my_dic)
 
-            for i, file_name in enumerate(data_path[int(len(data_path) / 2):int(len(data_path))]):
-                file_path = path + "/" + file_name
-                f = open(file_path)
-                text = json.load(f)
-                train_labels.append(text)
+        if dic == test_train[2]:
+            with open(data_path, 'r', encoding='utf8') as f:
+                data = json.load(f)
+                for item in data:
+                    my_dic = {}
+                    # my_dic['id'] = item.get('id')
+                    # my_dic['title'] = item.get('fandoms')
+                    my_dic['text'] = item.get('pair')
+                    test_features.append(my_dic)
+
+        if dic == test_train[3]:
+            with open(data_path, 'r', encoding='utf8') as f:
+                data = json.load(f)
+                for item in data:
+                    my_dic = {}
+                    # my_dic['id'] = item.get('id')
+                    my_dic['truth'] = item.get('same').get('authors')
+                    test_labels.append(my_dic)
+
+    return train_features, train_labels, test_features, test_labels
