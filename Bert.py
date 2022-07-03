@@ -7,9 +7,11 @@ model = BertModel.from_pretrained("bert-base-uncased")
 with open("Data.txt", "r") as f:
      text = f.readlines()
 
-encoded_input = tokenizer(text, return_tensors='pt', padding=True, truncation=True)
+encoded_input = list()
+encoded_input.append(tokenizer(text, return_tensors='pt', padding=True, truncation=True))
+encoded_input.append(tokenizer(text, return_tensors='pt', padding=True, truncation=True))
 
-output = model(**encoded_input)
+output = model(**encoded_input[0])
 print('Output1:', output)
-output = output[:, 0, :].view(-1, 768)
+output = output[0].view(-1, 1)
 print('Output2:', output)
