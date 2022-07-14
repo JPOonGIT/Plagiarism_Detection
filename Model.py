@@ -24,14 +24,14 @@ class Net(nn.Module):
         bert_output = bert_output[0].view(-1,1)
         x1 = F.relu(self.linear11(bert_output))
         x1 = F.relu(self.linear12(x1))
-        '''x2 = F.relu(self.linear21(bert_output))
+        x2 = F.relu(self.linear21(bert_output))
         x2 = F.relu(self.linear22(x2))
-        x3 = F.relu(self.linear31(bert_output))
+        '''x3 = F.relu(self.linear31(bert_output))
         x3 = F.relu(self.linear32(x3))
         x4 = F.relu(self.linear41(bert_output))
         x4 = F.relu(self.linear42(x4))'''
 
-        return x1 #, x2, x3, x4
+        return x1 ,x2 #, x3, x4
 
     def train_x1(self,dataframe, loss_function, optimizer, epochs):
         log_interval = 5
