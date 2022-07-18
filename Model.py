@@ -11,11 +11,11 @@ class Net(nn.Module):
         zwischenlayer = 100
         self.bert = BertModel.from_pretrained("bert-base-uncased")
         self.linear11 = nn.Linear(768, zwischenlayer)
-        #self.linear21 = nn.Linear(768, zwischenlayer)
+        self.linear21 = nn.Linear(768, zwischenlayer)
         #.linear31 = nn.Linear(768, zwischenlayer)
         #self.linear41 = nn.Linear(768, zwischenlayer)
         self.linear12 = nn.Linear(zwischenlayer, 1)
-        #self.linear22 = nn.Linear(zwischenlayer, 1)
+        self.linear22 = nn.Linear(zwischenlayer, 1)
         #self.linear32 = nn.Linear(zwischenlayer, 1)
         #self.linear42 = nn.Linear(zwischenlayer, 1)
 
