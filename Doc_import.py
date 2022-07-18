@@ -69,14 +69,15 @@ def import_verification(base_path):
         #data_path = os.listdir()
 
         if dic == test_train[0]:
-            f = open(dic, 'r')
-            data = json.load(f)
-            for item in data:
-                my_dic = {}
-                # my_dic['id'] = item.get('id')
-                # my_dic['title'] = item.get('fandoms')
-                my_dic['text'] = item.get('pair')
-                train_features.append(my_dic)
+            with open(dic, 'r') as f:
+            #f = open(dic, 'r')
+                data = json.load(f)
+                for item in data:
+                    my_dic = {}
+                    # my_dic['id'] = item.get('id')
+                    # my_dic['title'] = item.get('fandoms')
+                    my_dic['text'] = item.get('pair')
+                    train_features.append(my_dic)
 
         if dic == test_train[1]:
             f = open(dic, 'r')
