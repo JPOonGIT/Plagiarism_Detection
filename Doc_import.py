@@ -61,15 +61,16 @@ def import_verification(base_path):
 
     train_features = []
     train_labels = []
-    test_features = []
-    test_labels = []
+    #test_features = []
+    #test_labels = []
 
     for dic in test_train:
-        path = base_path + "/" + dic
-        data_path = os.listdir(path)
+        #path = base_path + "/" + dic
+        #data_path = os.listdir()
 
         if dic == test_train[0]:
-            with open(data_path, 'r', encoding='utf8') as f:
+            with open(dic, 'r') as f:
+            #f = open(dic, 'r')
                 data = json.load(f)
                 for item in data:
                     my_dic = {}
@@ -79,16 +80,21 @@ def import_verification(base_path):
                     train_features.append(my_dic)
 
         if dic == test_train[1]:
-             with open(data_path, 'r', encoding='utf8') as f:
-                data = json.load(f)
-                for item in data:
-                    my_dic = {}
-                    # my_dic['id'] = item.get('id')
-                    my_dic['truth'] = item.get('same').get('authors')
-                    train_labels.append(my_dic)
+            f = open(dic, 'r')
+            data = json.load(f)
+            for item in data:
+                my_dic = {}
+                # my_dic['id'] = item.get('id')
+                my_dic['truth'] = item.get('same').get('authors')
+                train_labels.append(my_dic)
 
+    return train_features, train_labels
+
+
+
+"""
         if dic == test_train[2]:
-            with open(data_path, 'r', encoding='utf8') as f:
+            with open(dic, 'r', encoding='utf8') as f:
                 data = json.load(f)
                 for item in data:
                     my_dic = {}
@@ -98,7 +104,7 @@ def import_verification(base_path):
                     test_features.append(my_dic)
 
         if dic == test_train[3]:
-            with open(data_path, 'r', encoding='utf8') as f:
+            with open(dic, 'r', encoding='utf8') as f:
                 data = json.load(f)
                 for item in data:
                     my_dic = {}
@@ -106,4 +112,4 @@ def import_verification(base_path):
                     my_dic['truth'] = item.get('same').get('authors')
                     test_labels.append(my_dic)
 
-    return train_features, train_labels, test_features, test_labels
+        return train_features, train_labels , test_features, test_labels """
