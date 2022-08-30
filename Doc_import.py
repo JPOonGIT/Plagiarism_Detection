@@ -56,43 +56,32 @@ def import_pan21(base_path):
 def import_verification(base_path):
     import os
     import json
+    import re
 
     test_train = os.listdir(base_path)
 
     train_features = []
     train_labels = []
-    #test_features = []
-    #test_labels = []
+    test_features = []
+    test_labels = []
 
     for dic in test_train:
-        #path = base_path + "/" + dic
-        #data_path = os.listdir()
 
         if dic == test_train[0]:
-            with open(dic, 'r') as f:
-            #f = open(dic, 'r')
-                data = json.load(f)
-                for item in data:
-                    my_dic = {}
-                    # my_dic['id'] = item.get('id')
-                    # my_dic['title'] = item.get('fandoms')
-                    my_dic['text'] = item.get('pair')
-                    train_features.append(my_dic)
+            with open(dic, 'r') as handle:
+                text_data = handle.read()
+                text_data = '[' + re.sub(r'\}\s\{', '},{', text_data) + ']'
+                json_data = json.loads(text_data)
+                for item in json_data:
+                    train_labels.append(item)
 
         if dic == test_train[1]:
-            f = open(dic, 'r')
-            data = json.load(f)
-            for item in data:
-                my_dic = {}
-                # my_dic['id'] = item.get('id')
-                my_dic['truth'] = item.get('same').get('authors')
-                train_labels.append(my_dic)
+            with open(dic, 'r') as handle:
+                text_data = handle.read()
+                text_data = '[' + re.sub(r'\}\s\{', '},{', text_data) + ']'
+                json_data = json.loads(text_data)
+                train_features.append(json_data)
 
-    return train_features, train_labels
-
-
-
-"""
         if dic == test_train[2]:
             with open(dic, 'r', encoding='utf8') as f:
                 data = json.load(f)
@@ -112,4 +101,22 @@ def import_verification(base_path):
                     my_dic['truth'] = item.get('same').get('authors')
                     test_labels.append(my_dic)
 
-        return train_features, train_labels , test_features, test_labels """
+        return train_features, train_labels , test_features, test_labels
+
+
+def text_preprocessing(fname_labels, fname_features):
+    import json
+
+    same_author = {}
+    for line in open(fname_labels):
+        author = json.loads(line.strip())
+        same_author[author['id']] = int(author['same'])
+
+    texts = []
+    for line in open(fname_features):
+        text = json.loads(line.strip())
+        if text['id'] in same_author:
+            texts.extend(text['pair'])
+
+    return same_author, texts
+
