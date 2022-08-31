@@ -8,7 +8,7 @@ from torch.autograd import Variable
 class Net(nn.Module):
 
     def __init__(self):
-        super(Net, self).__init__()s
+        super(Net, self).__init__()
         kernel = 4
         input_ff = int(393216/(kernel * kernel))
         zwischenlayer1 = int(100)

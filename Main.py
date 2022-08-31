@@ -25,7 +25,7 @@ test_labels_task2 = list()
 test_features_task1 = list()
 test_features_task2 = list()
 
-train_features_task1, train_labels_task1, test_features_task1, test_labels_task1 = Doc_import.import_pan21(pfad_pan21)
+train_features_task1, train_labels_task1, test_features_task1, test_labels_task1 = Doc_import.import_pan21(pfad_pan21, returns= 10)
 
 '''train_labels_task2, train_features_task2 = Doc_import.text_preprocessing(fname_train_labels, fname_train_features)
 test_labels_task2, test_features_task2 = Doc_import.text_preprocessing(fname_test_labels, fname_test_features)
