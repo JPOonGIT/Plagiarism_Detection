@@ -2,8 +2,7 @@ from transformers import BertModel
 import Data_Preprocessing
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-from torch.autograd import Variable
+
 
 class Net(nn.Module):
 
@@ -26,7 +25,7 @@ class Net(nn.Module):
     def forward_x1(self, input_data):
         bert_output = self.bert(**input_data)
         bert_output = self.pooling(bert_output[0])
-        bert_output = bert_output[0].view(-1, )
+        bert_output = bert_output[0].view(-1, 24576)
         x1 = torch.sigmoid(self.linear11(bert_output))
         x1 = torch.sigmoid(self.linear12(x1))
         x1 = torch.sigmoid(self.linear13(x1))
@@ -36,7 +35,7 @@ class Net(nn.Module):
     def forward_x2(self, input_data):
         bert_output = self.bert(**input_data)
         bert_output = self.pooling(bert_output[0])
-        bert_output = bert_output[0].view(-1, )
+        bert_output = bert_output[0].view(-1, 24576)
         x1 = torch.sigmoid(self.linear21(bert_output))
         x1 = torch.sigmoid(self.linear22(x1))
         x1 = torch.sigmoid(self.linear23(x1))
@@ -53,9 +52,9 @@ class Net(nn.Module):
                 output1 = self.forward_x1(data)
                 target =  torch.tensor(labels[i])
                 target = target.to(torch.float32)
-                #print(torch.tensor(output1[0][0]),torch.tensor(float(labels[i]['multi-author'])))
+                # print(torch.tensor(output1[0][0]),torch.tensor(float(labels[i]['multi-author'])))
                 print(output1[0],target)
-                #loss_x1 = loss_function(torch.tensor(output1[0][0]), torch.tensor(float(labels[i]['multi-author'])))
+                # loss_x1 = loss_function(torch.tensor(output1[0][0]), torch.tensor(float(labels[i]['multi-author'])))
                 loss_x1 = loss_function(output1[0],target)
                 evaluation_list.append(([output1,torch.tensor(labels[i]), loss_x1]))
                 print(i, '  ist=', output1, ' soll=', torch.tensor(labels[i]), ' Loss=', loss_x1)
@@ -85,8 +84,6 @@ class Net(nn.Module):
 
         return evaluation_list
 
-
-
     def test_model(self, features, labels, loss_function):
         log_interval = 5
         evaluation_list = list()
@@ -97,7 +94,5 @@ class Net(nn.Module):
             target = target.to(torch.float32)
             loss = loss_function(output[0], target)
             evaluation_list.append(([output,torch.tensor(labels[index]['multi-author']), loss]))
-
-
 
         return evaluation_list
