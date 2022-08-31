@@ -14,12 +14,15 @@ For the tasks we used the datasets of the PAN-Paper 20 "Overview of the Cross-Do
 
 # Code examples
 
-We used a couple of different hard-coded functions for the model:
+We used a couple of different hard-coded functions for thecimport of data in the model:
 - For the Input of the data we used some functions which are explained below ([Doc_import.py](https://github.com/JPOonGIT/Plagiarism_Detection/blob/2850e77301d446fc47a4a51945addd032afcd873/Doc_import.py)):
 - The function [doc_import()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/2850e77301d446fc47a4a51945addd032afcd873/Doc_import.py#L1) is a testfunction, which need a filename as input and will return the text of the file, without any paragraphs.
 - The function [import_pan21()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/27c7b38f5da789420e1fb8f258329d002dfa97cd/Doc_import.py#L11) is the import function of the first dataset. It needs a base path as input where the training and test data is located. The Output will be four lists with the training/test labels and features
 - The function [import_verification()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/27c7b38f5da789420e1fb8f258329d002dfa97cd/Doc_import.py#L56)  is the import function for the second dataset. It needs also the base path of the training and test data as input. The Output will be four lists with the training/test labels and features
 - The [text_preprocessing()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/27c7b38f5da789420e1fb8f258329d002dfa97cd/Doc_import.py#L102) is function for the second task. It needs the paths of the trainings or test data as input. The output will be a dictionary with the `ids` of the texts paired with the label `same` which indicates if a texts is from the same author. So the output will be ID:"0" or ID:"1". Additionally you the function returns list with the texts of the json file, if the id is in same_author.
+
+We also use different functions to preprocess the data for
+
 
 
 # Installation
