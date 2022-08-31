@@ -8,7 +8,7 @@ def doc_import():
     return line
 
 
-def import_pan21(base_path):
+def import_pan21(base_path, returns=1000):
     import os
     import json
 
@@ -50,7 +50,7 @@ def import_pan21(base_path):
                 text = json.load(f)
                 train_labels.append(text)
 
-        return train_features, train_labels, test_features, test_labels
+        return train_features[:returns], train_labels[:returns], test_features[:returns], test_labels[:returns]
 
 
 def import_verification(base_path):
