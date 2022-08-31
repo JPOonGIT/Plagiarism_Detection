@@ -23,7 +23,7 @@ We used a couple of different hard-coded functions for thecimport of data in the
 
 We also use different functions to preprocess the data for the model:
 - The function [preprocessing()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/4f4ff1b7887a15bfd4ae559c8cf66a9576c72240/Data_Preprocessing.py#L1) gets the text data as input and transformes the input into a tensor, which is returned.
-- The function [processing_taks1_binary()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/4f4ff1b7887a15bfd4ae559c8cf66a9576c72240/Data_Preprocessing.py#L10) and processing_task2_binary both transform the labels from the supervised data into binary format and returns it.
+- The function [processing_taks1_binary()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/4f4ff1b7887a15bfd4ae559c8cf66a9576c72240/Data_Preprocessing.py#L10) and [processing_task2_binary](https://github.com/JPOonGIT/Plagiarism_Detection/blob/fce24231be0bf3f680de1a662c06c81de2e46998/Data_Preprocessing.py#L27) both transform the labels from the supervised data into binary format and returns it.
 
 
 
@@ -42,11 +42,5 @@ Furthermore it would be intereseting to add a third task to the model to see if 
 
 # Results
 
-
-
-
-
-
-
-
-
+Although we had some results after the final testing, these results are not representative or evaluable. But these result show that the model is working, in the following screenshot you can see the output we got for the final result.
+![Bildschirmfoto 2022-08-31 um 21 54 28](https://user-images.githubusercontent.com/86957713/187770121-6347707b-61d3-4ca5-932d-2b7ccfe1e614.png)
