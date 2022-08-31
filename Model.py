@@ -84,15 +84,30 @@ class Net(nn.Module):
 
         return evaluation_list
 
-    def test_model(self, features, labels, loss_function):
+    def test_model_x1(self, features, labels, loss_function):
         log_interval = 5
         evaluation_list = list()
 
         for index, data in enumerate(features):
-            output = self(data)
-            target =  torch.tensor(labels[index])
+            data = Data_Preprocessing.preprocessing(data)
+            output = self.forward_x1(data)
+            target = torch.tensor(labels[index])
             target = target.to(torch.float32)
             loss = loss_function(output[0], target)
             evaluation_list.append(([output,torch.tensor(labels[index]['multi-author']), loss]))
+
+        return evaluation_list
+
+    def test_model_x2(self, features, labels, loss_function):
+        log_interval = 5
+        evaluation_list = list()
+
+        for index, data in enumerate(features):
+            data = Data_Preprocessing.preprocessing(data)
+            output = self.forward_x2(data)
+            target = torch.tensor(labels[index])
+            target = target.to(torch.float32)
+            loss = loss_function(output[0], target)
+            evaluation_list.append(([output, torch.tensor(labels[index]), loss]))
 
         return evaluation_list

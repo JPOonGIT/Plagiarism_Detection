@@ -21,7 +21,7 @@ def preprocessing_task1_binary(labels):
             binary.append(0)
             new_labels.append([0,1])
             count_nein += 1
-    return new_labels,binary, count_ja, count_nein
+    return new_labels
 
 
 def preprocessing_task2_binary(same_author):
@@ -39,4 +39,4 @@ def preprocessing_task2_binary(same_author):
             binary.append(0)
             new_labels.append([1,0])
             count_nein += 1
-    return new_labels, binary, count_ja, count_nein
+    return new_labels
