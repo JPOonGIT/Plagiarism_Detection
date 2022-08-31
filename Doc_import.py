@@ -1,4 +1,4 @@
-def doc_import():
+def doc_import(docs):
 
     docs = input("Input filename: ")
     while len(docs) < 1: break
