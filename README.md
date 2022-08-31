@@ -1,20 +1,15 @@
 ## Plagiarism Detection with a Multi-Task Perspective
 
-A short description of the project’s purpose and main functionality. What does the project do?
-
 The project was part of the course Information Retrieval held in the Bergische University Wuppertal as part of the Master in Industrial Engineering with Computer Science. 
 In this project we developed a Multi-Task Learning model, which can learn different tasks in the area of plagiarism detection. For that we explored the field of multi-task learning for plagiarism with neural language models. The aim of the project was to develop a model that can train more than one task in the field of plagiarism detection based on previous state-of-the-art work.
 
 # Motivation
 
-A short description of the project’s motivation. Why does the project exist, and which issues does it address?
-
 Through the grogress made in the field of NLP plagiarism detection have expirienced a lot of success. With this project we tried to find a way to improve the learning of different tasks on the field of plagiarism detection. One way to improve the training of such neural language models is the usage of multi-task learning models.
 
 # Features
 
-What makes your project stand out? Include screenshots, code snippets, logos, etc.
-
+For the tasks we used the datasets of the PAN-Paper 20 "Overview of the Cross-Domain Authorship Verification Task at PAN 2020" (https://pan.webis.de/downloads/publications/papers/kestemont_2020.pdf) and of the PAN-Paper 21 "Overview if the Style Change Detection Task at PAN 2021 (https://pan.webis.de/downloads/publications/papers/zangerle_2021.pdf) 
 
 
 # Code examples
@@ -24,17 +19,24 @@ Include very short code examples that show what the project does as concisely as
 # Installation
 
 Provide step-by-step examples and descriptions of how to set up a development environment.
-
-
 Describe and show how to run the tests with code examples.
 
-# How to use and extend the project? (maybe)
+For the project to run you need to install the BERT model, a bidirectional transformer. 
+Please run: `from transformers import BertModel`
+Also you need a current version of Pytorch which you can find here:
+`https://pytorch.org`
 
 
+# How use and extend the project? 
 
-Include a step-by-step guide that enables others to use and extend your code for their projects. Whether this section is required and whether it should be part of the README.md or a separate file depends on your project. If the very short Code Examples from above comprehensively cover (despite being concise!) all the major functionality of your project already, this section can be omitted. If you think that users/developers will need more information than the brief code examples above to fully understand your code, this section is mandatory. If your project requires significant information on code reuse, place the information into a new .md file.
+The next step of this project would be to debug the current network so that you can get a valid result if the multi-task learning model is working as intented. Because of time issues, we couldn´t finalise the training aspect of the project, so that we can figure if the learning of two task in different variants will get better results.
+Furthermore it would be intereseting to add a third task to the model to see if the results would be even better. For that we theoretically thought about using the task of author-profiling with the dataset of PAN 18 "Overview of the 6th Author Profiling Task at PAN 20218: Multimodal Gender Identification in Twitter"
 
 # Results
+
+
+
+
 
 If you performed evaluations as part of your project, include your preliminary results that you also show in your final project presentation, e.g., precision, recall, F1 measure and/or figures highlighting what your project does. If applicable, briefly describe the dataset your created or used first before presenting the evaluated use cases and the results.
 

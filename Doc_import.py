@@ -83,23 +83,18 @@ def import_verification(base_path):
                 train_features.append(json_data)
 
         if dic == test_train[2]:
-            with open(dic, 'r', encoding='utf8') as f:
-                data = json.load(f)
-                for item in data:
-                    my_dic = {}
-                    # my_dic['id'] = item.get('id')
-                    # my_dic['title'] = item.get('fandoms')
-                    my_dic['text'] = item.get('pair')
-                    test_features.append(my_dic)
+            with open(dic, 'r') as handle:
+                text_data = handle.read()
+                text_data = '[' + re.sub(r'\}\s\{', '},{', text_data) + ']'
+                json_data = json.loads(text_data)
+                test_features.append(json_data)
 
         if dic == test_train[3]:
-            with open(dic, 'r', encoding='utf8') as f:
-                data = json.load(f)
-                for item in data:
-                    my_dic = {}
-                    # my_dic['id'] = item.get('id')
-                    my_dic['truth'] = item.get('same').get('authors')
-                    test_labels.append(my_dic)
+            with open(dic, 'r') as handle:
+                text_data = handle.read()
+                text_data = '[' + re.sub(r'\}\s\{', '},{', text_data) + ']'
+                json_data = json.loads(text_data)
+                test_labels.append(json_data)
 
         return train_features, train_labels , test_features, test_labels
 
