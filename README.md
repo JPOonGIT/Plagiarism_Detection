@@ -22,10 +22,15 @@ We used a couple of different hard-coded functions for thecimport of data in the
 - The [text_preprocessing()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/27c7b38f5da789420e1fb8f258329d002dfa97cd/Doc_import.py#L102) is function for the second task. It needs the paths of the trainings or test data as input. The output will be a dictionary with the `ids` of the texts paired with the label `same` which indicates if a texts is from the same author. So the output will be ID:"0" or ID:"1". Additionally you the function returns list with the texts of the json file, if the id is in same_author.
 
 We also use different functions to preprocess the data for the model:
-- The function [preprocessing()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/4f4ff1b7887a15bfd4ae559c8cf66a9576c72240/Data_Preprocessing.py#L1) gets the text data as input and transformes the input into a tensor, which is returned.
+- The function [preprocessing()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/4f4ff1b7887a15bfd4ae559c8cf66a9576c72240/Data_Preprocessing.py#L1) gets as input an text and returns a three tensors for the bert model input. The function is based on the bert tokenizer.
 - The function [processing_taks1_binary()](https://github.com/JPOonGIT/Plagiarism_Detection/blob/4f4ff1b7887a15bfd4ae559c8cf66a9576c72240/Data_Preprocessing.py#L10) and [processing_task2_binary](https://github.com/JPOonGIT/Plagiarism_Detection/blob/fce24231be0bf3f680de1a662c06c81de2e46998/Data_Preprocessing.py#L27) both transform the labels from the supervised data into binary format and returns it.
 
 
+The Model.py file includes the functions relating to the model, like training testing and so on
+- Function [__init__(self)](https://github.com/JPOonGIT/Plagiarism_Detection/blob/978045b40af11fc632b6a2351224176dff611331/Model.py#L9) initialize the model with all the needed layer if the class gets called
+- Function [forward_x1 and forward_x2](https://github.com/JPOonGIT/Plagiarism_Detection/blob/978045b40af11fc632b6a2351224176dff611331/Model.py#L25) describes the path through the model for a training step. Depending on which task you want to train the right function gets called in the train function.
+- Function [train_x1 train_x2](https://github.com/JPOonGIT/Plagiarism_Detection/blob/978045b40af11fc632b6a2351224176dff611331/Model.py#L45) are the two functions which do the actual training step. For that you give the function a list with the labels and the training features. The function iterates over the lenght of both. Also it is importont to define a loss function and a optimizer for it. The last parameter to choose is the epoch parameter. With that you can choose how often a task gets with the same data trained. The function returns a list with the loss of all training samples. 
+- Function [test_model_x1 test_model_x2](https://github.com/JPOonGIT/Plagiarism_Detection/blob/978045b40af11fc632b6a2351224176dff611331/Model.py#L87) with this function it is possible to calculate a loss with the test data and compare it with the training evaluation. The function returns a list with the loss of all test samples.
 
 # Installation
 
